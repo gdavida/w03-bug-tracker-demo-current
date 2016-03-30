@@ -2,52 +2,37 @@ require "test_helper"
 require_relative "../lib/researcher.rb"
 
 class ResearcherTest < Minitest::Test
+
+
   
-  def test_if_valid_without_a_name
-    r = Researcher.new(name: "Andrew", age: 30)
-    assert(r.my_valid?, "Should be valid initially")
+  #######-
+
+  def test_validator_should_fail_with_no_name
+    r = Researcher.new(name: "Davida", age: 33)
+    assert(r.valid?, "Should be valid at creation")
 
     r.name = nil
-    refute(r.my_valid?, "should be invalid with a nil name")
-  end
-
-  def test_if_valid_with_a_blank_name
-    r = Researcher.new(name: "Andrew", age: 30)
-    assert(r.my_valid?, "Should be valid initially")
+    refute(r.valid?, "Should be invalid without a name")
 
     r.name = ""
-    refute(r.my_valid?, "should be invalid with a blank name")
+    refute(r.valid?, "Should be invalid with an empty name")
   end
+  
+  
+  #######-
 
-  def test_if_valid_with_valid_age
-    r = Researcher.new(name: "Andrew", age: 30)
-    assert(r.my_valid?)
-  end
+  def test_validator_should_fail_with_no_age
+    r = Researcher.new(name: "Davida", age: 33)
+    assert(r.valid?, "Should be valid at creation")
 
-  def test_if_valid_with_nil_age
-    r = Researcher.new(name: "Andrew", age: 30)
-    assert(r.my_valid?, "Should be valid initially")
-    
     r.age = nil
-    refute(r.my_valid?, "should be invalid with a nil age")
+    refute(r.valid?, "Should be invalid without a age")
+
+    r.age = ""
+    refute(r.valid?, "Should be invalid with an empty age")
+
+    r.age = 17
+    refute(r.valid?, "Should be invalid with an age less than 18")
   end
 
-  def test_if_valid_with_underage_age
-    r = Researcher.new(name: "Andrew", age: 30)
-    assert(r.my_valid?, "Should be valid initially")
-    
-    r.age = 20
-    refute(r.my_valid?, "should be invalid with underage age")
-  end
-
-  def test_if_valid_with_on_the_cusp_age
-    r = Researcher.new(name: "Andrew", age: 30)
-    assert(r.my_valid?, "Should be valid initially")
-    
-    r.age = 21
-    assert(r.my_valid?, "should be valid with age of 21")
-  end
-
-    
-    
 end
