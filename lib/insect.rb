@@ -10,12 +10,5 @@ class Insect < ActiveRecord::Base
 	validates :description, presence: true
 	validates :researcher_id, presence: true, numericality: { only_integer: true }
 
-
-  def researcher
-    Researcher.find_by_id(researcher_id)
-  end
-
-  def papers
-    Paper.where(insect_id: id)
-  end
+  belongs_to :researcher
 end

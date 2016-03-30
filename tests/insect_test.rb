@@ -12,7 +12,6 @@ class InsectTest < Minitest::Test
 #---------------------------------------------------------
 
 
-
   def test_validator_should_fail_with_no_name
     i = Insect.new(name: "Davida", description: "descr", location: "shoes", researcher_id: 1)
     assert(i.valid?, "Should be valid at creation")
@@ -63,7 +62,7 @@ class InsectTest < Minitest::Test
     refute(i.valid?, "Should be invalid with an empty researcher_id")
   end
 
-  #######
+  
 
 end
 

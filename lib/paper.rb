@@ -5,11 +5,7 @@
 
 class Paper < ActiveRecord::Base
 
-  def researcher
-    Researcher.find_by_id(researcher_id)
-  end
+belongs_to :insect
+belongs_to :researcher
 
-  def insect
-    Insect.find_by_id(insect_id)
-  end
 end
